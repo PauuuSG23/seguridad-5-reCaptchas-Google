@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Formulario Seguro{% endblock %}
+
+{% block head_extra %}
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow" id="form">
+      <div class="card-body">
+        <h3 class="card-title text-center mb-4">Formulario Seguro</h3>
+
+        <form method="POST" novalidate>
+          {{ form.hidden_tag() }}
+
+          <div class="mb-3">
+            <label class="form-label" for="{{ form.nombre.id }}">{{ form.nombre.label }}</label>
+            {{ form.nombre(class="form-control", id=form.nombre.id, placeholder="Tu usuario") }}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="{{ form.correo.id }}">{{ form.correo.label }}</label>
+            {{ form.correo(class="form-control", id=form.correo.id, placeholder="tucorreo@usta.com", required=True) }}
+          </div>
+
+          <div class="mb-3 d-flex justify-content-center">
+            {{ form.recaptcha() }}
+          </div>
+
+          <div class="d-grid">
+            {{ form.submit(class="btn btn-primary") }}
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
